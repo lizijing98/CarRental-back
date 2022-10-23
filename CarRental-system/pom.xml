@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>carrental-system</artifactId>
+    <artifactId>CarRental-system</artifactId>
 
     <description>
         system系统模块
@@ -20,7 +20,7 @@
         <!-- 通用工具-->
         <dependency>
             <groupId>com.carrental</groupId>
-            <artifactId>carrental-common</artifactId>
+            <artifactId>CarRental-common</artifactId>
         </dependency>
 
     </dependencies>

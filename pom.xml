@@ -154,35 +154,35 @@
             <!-- 定时任务-->
             <dependency>
                 <groupId>com.carrental</groupId>
-                <artifactId>carrental-quartz</artifactId>
+                <artifactId>CarRental-quartz</artifactId>
                 <version>${carrental.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
                 <groupId>com.carrental</groupId>
-                <artifactId>carrental-generator</artifactId>
+                <artifactId>CarRental-generator</artifactId>
                 <version>${carrental.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.carrental</groupId>
-                <artifactId>carrental-framework</artifactId>
+                <artifactId>CarRental-framework</artifactId>
                 <version>${carrental.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
                 <groupId>com.carrental</groupId>
-                <artifactId>carrental-system</artifactId>
+                <artifactId>CarRental-system</artifactId>
                 <version>${carrental.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.carrental</groupId>
-                <artifactId>carrental-common</artifactId>
+                <artifactId>CarRental-common</artifactId>
                 <version>${carrental.version}</version>
             </dependency>
 
@@ -190,12 +190,12 @@
     </dependencyManagement>
 
     <modules>
-        <module>carrental-admin</module>
-        <module>carrental-framework</module>
-        <module>carrental-system</module>
-        <module>carrental-quartz</module>
-        <module>carrental-generator</module>
-        <module>carrental-common</module>
+        <module>CarRental-admin</module>
+        <module>CarRental-framework</module>
+        <module>CarRental-system</module>
+        <module>CarRental-quartz</module>
+        <module>CarRental-generator</module>
+        <module>CarRental-common</module>
     </modules>
     <packaging>pom</packaging>
 

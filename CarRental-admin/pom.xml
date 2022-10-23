@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>carrental-admin</artifactId>
+    <artifactId>CarRental-admin</artifactId>
 
     <description>
         web服务入口
@@ -46,19 +46,19 @@
         <!-- 核心模块-->
         <dependency>
             <groupId>com.carrental</groupId>
-            <artifactId>carrental-framework</artifactId>
+            <artifactId>CarRental-framework</artifactId>
         </dependency>
 
         <!-- 定时任务-->
         <dependency>
             <groupId>com.carrental</groupId>
-            <artifactId>carrental-quartz</artifactId>
+            <artifactId>CarRental-quartz</artifactId>
         </dependency>
 
         <!-- 代码生成-->
         <dependency>
             <groupId>com.carrental</groupId>
-            <artifactId>carrental-generator</artifactId>
+            <artifactId>CarRental-generator</artifactId>
         </dependency>
 
     </dependencies>

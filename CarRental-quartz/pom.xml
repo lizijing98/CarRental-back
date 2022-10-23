@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>carrental-quartz</artifactId>
+    <artifactId>CarRental-quartz</artifactId>
 
     <description>
         quartz定时任务
@@ -32,7 +32,7 @@
         <!-- 通用工具-->
         <dependency>
             <groupId>com.carrental</groupId>
-            <artifactId>carrental-common</artifactId>
+            <artifactId>CarRental-common</artifactId>
         </dependency>
 
     </dependencies>
