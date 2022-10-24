@@ -8,7 +8,7 @@
     <artifactId>carrental</artifactId>
     <version>3.8.4</version>
 
-    <name>carrental</name>
+    <name>CarRental</name>
     <url>http://fastbuild.run</url>
     <description>若依管理系统</description>
     
@@ -186,6 +186,13 @@
                 <version>${carrental.version}</version>
             </dependency>
 
+            <!-- 业务信息-->
+            <dependency>
+                <groupId>com.carrental</groupId>
+                <artifactId>CarRental-info</artifactId>
+                <version>${carrental.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -196,6 +203,7 @@
         <module>CarRental-quartz</module>
         <module>CarRental-generator</module>
         <module>CarRental-common</module>
+        <module>CarRental-info</module>
     </modules>
     <packaging>pom</packaging>
 
