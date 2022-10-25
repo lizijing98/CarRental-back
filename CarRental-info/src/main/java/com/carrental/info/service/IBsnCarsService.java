@@ -7,7 +7,7 @@ import com.carrental.info.domain.BsnCars;
  * 车辆信息Service接口
  * 
  * @author carrental
- * @date 2022-10-25
+ * @date 2022-10-26
  */
 public interface IBsnCarsService 
 {

@@ -29,9 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectBsnCarsList" parameterType="BsnCars" resultMap="BsnCarsResult">
         <include refid="selectBsnCarsVo"/>
         <where>  
-            <if test="carPlate != null  and carPlate != ''"> and car_plate = #{carPlate}</if>
-            <if test="brand != null  and brand != ''"> and brand = #{brand}</if>
-            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="carPlate != null  and carPlate != ''"> and car_plate like concat('%', #{carPlate}, '%')</if>
+            <if test="brand != null  and brand != ''"> and brand like concat('%', #{brand}, '%')</if>
+            <if test="type != null  and type != ''"> and type like concat('%', #{type}, '%')</if>
             <if test="model != null  and model != ''"> and model = #{model}</if>
             <if test="price != null "> and price = #{price}</if>
             <if test="deposit != null "> and deposit = #{deposit}</if>
@@ -49,15 +49,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertBsnCars" parameterType="BsnCars" useGeneratedKeys="true" keyProperty="carId">
         insert into bsn_cars
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="carPlate != null">car_plate,</if>
-            <if test="brand != null">brand,</if>
-            <if test="type != null">type,</if>
-            <if test="model != null">model,</if>
+            <if test="carPlate != null and carPlate != ''">car_plate,</if>
+            <if test="brand != null and brand != ''">brand,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="model != null and model != ''">model,</if>
             <if test="price != null">price,</if>
             <if test="deposit != null">deposit,</if>
             <if test="img != null">img,</if>
             <if test="storeId != null">store_id,</if>
-            <if test="status != null">status,</if>
+            <if test="status != null and status != ''">status,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -65,15 +65,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">remark,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="carPlate != null">#{carPlate},</if>
-            <if test="brand != null">#{brand},</if>
-            <if test="type != null">#{type},</if>
-            <if test="model != null">#{model},</if>
+            <if test="carPlate != null and carPlate != ''">#{carPlate},</if>
+            <if test="brand != null and brand != ''">#{brand},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="model != null and model != ''">#{model},</if>
             <if test="price != null">#{price},</if>
             <if test="deposit != null">#{deposit},</if>
             <if test="img != null">#{img},</if>
             <if test="storeId != null">#{storeId},</if>
-            <if test="status != null">#{status},</if>
+            <if test="status != null and status != ''">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -85,15 +85,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateBsnCars" parameterType="BsnCars">
         update bsn_cars
         <trim prefix="SET" suffixOverrides=",">
-            <if test="carPlate != null">car_plate = #{carPlate},</if>
-            <if test="brand != null">brand = #{brand},</if>
-            <if test="type != null">type = #{type},</if>
-            <if test="model != null">model = #{model},</if>
+            <if test="carPlate != null and carPlate != ''">car_plate = #{carPlate},</if>
+            <if test="brand != null and brand != ''">brand = #{brand},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="model != null and model != ''">model = #{model},</if>
             <if test="price != null">price = #{price},</if>
             <if test="deposit != null">deposit = #{deposit},</if>
             <if test="img != null">img = #{img},</if>
             <if test="storeId != null">store_id = #{storeId},</if>
-            <if test="status != null">status = #{status},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>

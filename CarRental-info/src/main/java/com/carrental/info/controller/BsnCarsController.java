@@ -25,7 +25,7 @@ import com.carrental.common.core.page.TableDataInfo;
  * 车辆信息Controller
  * 
  * @author carrental
- * @date 2022-10-25
+ * @date 2022-10-26
  */
 @RestController
 @RequestMapping("/info/cars")

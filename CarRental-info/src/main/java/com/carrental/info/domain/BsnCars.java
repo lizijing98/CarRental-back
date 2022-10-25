@@ -10,7 +10,7 @@ import com.carrental.common.core.domain.BaseEntity;
  * 车辆信息对象 bsn_cars
  * 
  * @author carrental
- * @date 2022-10-25
+ * @date 2022-10-26
  */
 public class BsnCars extends BaseEntity
 {
@@ -44,14 +44,15 @@ public class BsnCars extends BaseEntity
     private BigDecimal deposit;
 
     /** 车辆照片 */
+    @Excel(name = "车辆照片")
     private String img;
 
     /** 归属门店ID */
     @Excel(name = "归属门店ID")
     private Long storeId;
 
-    /** 车辆状态(0正常1停用2已租) */
-    @Excel(name = "车辆状态(0正常1停用2已租)")
+    /** 车辆状态（0正常1停用2已租） */
+    @Excel(name = "车辆状态", readConverterExp = "0=正常1停用2已租")
     private String status;
 
     public void setCarId(Long carId) 
