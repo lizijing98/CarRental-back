@@ -51,6 +51,10 @@ public class BsnCars extends BaseEntity
     @Excel(name = "归属门店ID")
     private Long storeId;
 
+    /** 归属门店 */
+    @Excel(name = "归属门店")
+    private String storeName;
+
     /** 车辆状态（0正常1停用2已租） */
     @Excel(name = "车辆状态", readConverterExp = "0=正常1停用2已租")
     private String status;
@@ -141,7 +145,15 @@ public class BsnCars extends BaseEntity
         this.status = status;
     }
 
-    public String getStatus() 
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getStatus()
     {
         return status;
     }
@@ -158,6 +170,7 @@ public class BsnCars extends BaseEntity
             .append("deposit", getDeposit())
             .append("img", getImg())
             .append("storeId", getStoreId())
+            .append("storeName", getStoreName())
             .append("status", getStatus())
             .append("createBy", getCreateBy())
             .append("createTime", getCreateTime())
