@@ -1,0 +1,3 @@
+[submodule "CarRental-ui"]
+	path = CarRental-ui
+	url = git@github.com:lizijing98/CarRental-ui.git
