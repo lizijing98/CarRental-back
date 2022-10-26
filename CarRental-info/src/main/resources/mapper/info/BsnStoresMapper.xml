@@ -1,45 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carrental.info.mapper.BsnStoresMapper">
-    
+
     <resultMap type="BsnStores" id="BsnStoresResult">
-        <result property="storeId"    column="store_id"    />
-        <result property="storeName"    column="store_name"    />
-        <result property="storeAddress"    column="store_address"    />
-        <result property="storeManager"    column="store_manager"    />
-        <result property="storeOwn"    column="store_own"    />
-        <result property="storeType"    column="store_type"    />
-        <result property="status"    column="status"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="updateTime"    column="update_time"    />
-        <result property="remark"    column="remark"    />
+        <result property="storeId" column="store_id"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="storeManager" column="store_manager"/>
+        <result property="storeManagerName" column="user_name"/>
+        <result property="storeOwn" column="store_own"/>
+        <result property="storeType" column="store_type"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectBsnStoresVo">
-        select store_id, store_name, store_address, store_manager, store_own, store_type, status, create_by, create_time, update_by, update_time, remark from bsn_stores
+        select bs.store_id,
+               bs.store_name,
+               bs.store_address,
+               bs.store_manager,
+               bs.store_own,
+               bs.store_type,
+               bs.status,
+               bs.create_by,
+               bs.create_time,
+               bs.update_by,
+               bs.update_time,
+               bs.remark,
+               su.user_name
+        from bsn_stores bs
+                 left join sys_user su
+                           on su.user_id = bs.store_manager
     </sql>
 
     <select id="selectBsnStoresList" parameterType="BsnStores" resultMap="BsnStoresResult">
         <include refid="selectBsnStoresVo"/>
-        <where>  
-            <if test="storeName != null  and storeName != ''"> and store_name like concat('%', #{storeName}, '%')</if>
-            <if test="storeAddress != null  and storeAddress != ''"> and store_address = #{storeAddress}</if>
-            <if test="storeManager != null "> and store_manager = #{storeManager}</if>
-            <if test="storeOwn != null "> and store_own = #{storeOwn}</if>
-            <if test="storeType != null  and storeType != ''"> and store_type = #{storeType}</if>
-            <if test="status != null  and status != ''"> and status = #{status}</if>
+        <where>
+            <if test="storeName != null  and storeName != ''">and store_name like concat('%', #{storeName}, '%')</if>
+            <if test="storeAddress != null  and storeAddress != ''">and store_address = #{storeAddress}</if>
+            <if test="storeManager != null ">and store_manager = #{storeManager}</if>
+            <if test="storeManagerName != null ">and user_name like concat('%',#{storeManagerName},'%')</if>
+            <if test="storeOwn != null ">and store_own = #{storeOwn}</if>
+            <if test="storeType != null  and storeType != ''">and store_type = #{storeType}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
         </where>
     </select>
-    
+
     <select id="selectBsnStoresByStoreId" parameterType="Long" resultMap="BsnStoresResult">
         <include refid="selectBsnStoresVo"/>
         where store_id = #{storeId}
     </select>
-        
+
     <insert id="insertBsnStores" parameterType="BsnStores" useGeneratedKeys="true" keyProperty="storeId">
         insert into bsn_stores
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -54,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="storeName != null and storeName != ''">#{storeName},</if>
             <if test="storeAddress != null">#{storeAddress},</if>
@@ -67,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateBsnStores" parameterType="BsnStores">
@@ -89,11 +106,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteBsnStoresByStoreId" parameterType="Long">
-        delete from bsn_stores where store_id = #{storeId}
+        delete
+        from bsn_stores
+        where store_id = #{storeId}
     </delete>
 
     <delete id="deleteBsnStoresByStoreIds" parameterType="String">
-        delete from bsn_stores where store_id in 
+        delete from bsn_stores where store_id in
         <foreach item="storeId" collection="array" open="(" separator="," close=")">
             #{storeId}
         </foreach>
