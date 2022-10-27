@@ -33,6 +33,7 @@
                bc.deposit,
                bc.img,
                bc.store_id,
+               bs.store_name,
                bc.status,
                bc.create_by,
                bc.create_time,
