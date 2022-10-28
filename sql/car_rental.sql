@@ -134,24 +134,46 @@ INSERT INTO `ry-vue`.sys_dict_data (dict_code, dict_sort, dict_label, dict_value
 VALUES (108, 3, '旗舰店', '3', 'info_store_type', null, 'default', 'N', '0', 'admin', '品牌旗舰店');
 
 -- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息', '5', '1', 'stores', 'info/stores/index', 1, 0, 'C', '0', '0', 'info:stores:list', '#', 'admin', sysdate(), '', null, '门店信息菜单');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息', '5', '1', 'stores', 'info/stores/index', 1, 0, 'C', '0', '0', 'info:stores:list', '#', 'admin',
+        sysdate(), '', null, '门店信息菜单');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'info:stores:query',        '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息查询', @parentId, '1', '#', '', 1, 0, 'F', '0', '0', 'info:stores:query', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'info:stores:add',          '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息新增', @parentId, '2', '#', '', 1, 0, 'F', '0', '0', 'info:stores:add', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'info:stores:edit',         '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息修改', @parentId, '3', '#', '', 1, 0, 'F', '0', '0', 'info:stores:edit', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'info:stores:remove',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息删除', @parentId, '4', '#', '', 1, 0, 'F', '0', '0', 'info:stores:remove', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('门店信息导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'info:stores:export',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('门店信息导出', @parentId, '5', '#', '', 1, 0, 'F', '0', '0', 'info:stores:export', '#', 'admin', sysdate(), '',
+        null, '');
+
+-- 设置车辆与门店关系权限SQL
+INSERT INTO sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+VALUES ('所属门店分配', 2000, 6, '', null, 1, 0, 'F', '0', '0', 'info:cars:setstore', '#', 'admin', sysdate(), '', null,
+        '');
+INSERT INTO sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+VALUES ('下属车辆分配', 2006, 6, '', null, 1, 0, 'F', '0', '0', 'info:stores:setcar', '#', 'admin', sysdate(), '', null,
+        '');
