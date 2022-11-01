@@ -19,7 +19,6 @@ create table bsn_cars
     price       double(10, 2) default null comment '租金/天',
     deposit     double(10, 2) default null comment '押金',
     img         varchar(100)  default '' comment '车辆照片',
-    store_id    bigint(20)    default null comment '归属门店ID',
     status      char(1)       default '0' comment '车辆状态（0正常1停用2已租）',
     create_by   varchar(64)   default '' comment '创建者',
     create_time datetime comment '创建时间',
@@ -31,7 +30,7 @@ create table bsn_cars
   auto_increment = 10 comment ='车辆表';
 
 insert into bsn_cars
-values (1, '测A10001', '大众', '捷达2021款', '1', 120, 1000, '', null, '0', 'admin', sysdate(), '', null, '测试车辆1');
+values (1, '测A10001', '大众', '捷达2021款', '1', 120, 1000, '', '0', 'admin', sysdate(), '', null, '测试车辆1');
 
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
@@ -177,3 +176,14 @@ INSERT INTO sys_menu (menu_name, parent_id, order_num, path, component, is_frame
                       perms, icon, create_by, create_time, update_by, update_time, remark)
 VALUES ('下属车辆分配', 2006, 6, '', null, 1, 0, 'F', '0', '0', 'info:stores:setcar', '#', 'admin', sysdate(), '', null,
         '');
+
+# 门店—车辆关联表
+drop table if exists bsn_store_cars;
+create table bsn_store_cars
+(
+    store_id bigint(20) not null comment '门店ID',
+    car_id   bigint(20) not null comment '车辆ID',
+    primary key (store_id, car_id)
+) engine = innodb comment ='门店-车辆关联表';
+insert into bsn_store_cars
+values (1, 1);

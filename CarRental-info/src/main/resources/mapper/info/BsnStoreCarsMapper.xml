@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carrental.info.mapper.BsnStoreCarsMapper">
+
+    <resultMap type="BsnStoreCars" id="BsnStoreCarsResult">
+        <result property="storeId" column="store_id"/>
+        <result property="carId" column="car_id"/>
+        <result property="storeName" column="store_name"/>
+        <result property="carPlate" column="car_plate"/>
+    </resultMap>
+
+    <sql id="selectBsnStoreCarsVo">
+        select bsc.store_id, bsc.car_id
+        from bsn_store_cars bsc
+                 left join bsc_stores bs on bsc.store_id = bs.store_id
+                 left join bsc_cars bc on bsc.car_id = bc.car_id
+    </sql>
+
+    <select id="selectBsnStoreCarsList" parameterType="BsnStoreCars" resultMap="BsnStoreCarsResult">
+        <include refid="selectBsnStoreCarsVo"/>
+        <where>
+            <if test="storeId != null ">and bsc.store_id = #{storeId}</if>
+            <if test="carId != null ">and bsc.car_id = #{carId}</if>
+        </where>
+    </select>
+
+    <select id="selectBsnStoreCarsByStoreId" parameterType="Long" resultMap="BsnStoreCarsResult">
+        <include refid="selectBsnStoreCarsVo"/>
+        where store_id = #{storeId}
+    </select>
+
+    <insert id="insertBsnStoreCars" parameterType="BsnStoreCars">
+        insert into bsn_store_cars
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">store_id,</if>
+            <if test="carId != null">car_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">#{storeId},</if>
+            <if test="carId != null">#{carId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBsnStoreCars" parameterType="BsnStoreCars">
+        update bsn_store_cars
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="carId != null">car_id = #{carId},</if>
+        </trim>
+        where store_id = #{storeId}
+    </update>
+
+    <delete id="deleteBsnStoreCarsByStoreId" parameterType="Long">
+        delete
+        from bsn_store_cars
+        where store_id = #{storeId}
+    </delete>
+
+    <delete id="deleteBsnStoreCarsByStoreIds" parameterType="String">
+        delete from bsn_store_cars where store_id in
+        <foreach item="storeId" collection="array" open="(" separator="," close=")">
+            #{storeId}
+        </foreach>
+    </delete>
+</mapper>

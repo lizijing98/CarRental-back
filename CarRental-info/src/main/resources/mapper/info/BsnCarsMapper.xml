@@ -32,7 +32,7 @@
                bc.price,
                bc.deposit,
                bc.img,
-               bc.store_id,
+               bsc.store_id,
                bs.store_name,
                bc.status,
                bc.create_by,
@@ -41,7 +41,9 @@
                bc.update_time,
                bc.remark
         from bsn_cars bc
-                 left join bsn_stores bs on bc.store_id = bs.store_id
+                 left join bsn_store_cars bsc on bc.car_id = bsc.car_id
+                 left join bsn_stores bs on bsc.store_id = bs.store_id
+
     </sql>
 
     <select id="selectBsnCarsList" parameterType="BsnCars" resultMap="BsnCarsResult">
